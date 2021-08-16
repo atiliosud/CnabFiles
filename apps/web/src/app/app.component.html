@@ -1,0 +1,74 @@
+<div id="main">
+    <div class="m-3 bg-white rounded">
+        <form>
+            <div class="m-3">
+                <label class="form-label">Upload</label>
+                <p-fileUpload
+                    #fileUpload
+                    mode="basic"
+                    name="file"
+                    url="{{ cnabApiUrl }}"
+                    accept="text/plain"
+                    [maxFileSize]="1000000"
+                    [auto]="true"
+                    (onBeforeUpload)="showUploading()"
+                    (onUpload)="showUploaded()"
+                    (onError)="showUploadError($event)"
+                    chooseLabel="Enviar"
+                ></p-fileUpload>
+            </div>
+
+            <div id="filter">
+                <div class="m-3 w-100">
+                    <label class="form-label">Lojas</label>
+                </div>
+                <div class="m-3 w-100">
+                    <p-dropdown
+                        [options]="stores"
+                        [(ngModel)]="selectedStore"
+                        optionLabel="name"
+                        [ngModelOptions]="{ standalone: true }"
+                        (onChange)="refreshTable()"
+                    ></p-dropdown>
+                </div>
+            </div>
+
+            <div id="result">
+                <div class="m-3 w-100">
+                    <p-table [value]="cnabs" styleClass="p-datatable-striped">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Data</th>
+                                <th>Valor</th>
+                                <th>CPF</th>
+                                <th>Cartão</th>
+                                <th>Hora</th>
+                                <th>Dono da loja</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-cnab>
+                            <tr *ngIf="cnab.visible">
+                                <td>{{ cnab.idTransactionType }}</td>
+                                <td>{{ cnab.dateOccurrenceText }}</td>
+                                <td>{{ cnab.valueText }}</td>
+                                <td>{{ cnab.cpf }}</td>
+                                <td>{{ cnab.card }}</td>
+                                <td>{{ cnab.dateOccurrenceHourText }}</td>
+                                <td>{{ cnab.nameStoreOwner }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+            <div id="total">
+                <label class="form-label m-3"
+                    >Total: {{ this.total | currency }}</label
+                >
+            </div>
+
+            <p-toast position="bottom-center" key="bc"></p-toast>
+        </form>
+    </div>
+</div>
