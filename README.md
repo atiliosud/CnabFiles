@@ -73,7 +73,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 ```bash
 
 # Clone este repositório
-$ git clone 
+$ git clone https://github.com/atiliosud/CnabFiles
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd desafio-dev-main
@@ -96,7 +96,7 @@ $ dotnet run
 ```bash
 
 # Clone este repositório
-$ git clone 
+$ git clone https://github.com/atiliosud/CnabFiles
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd desafio-dev-main
